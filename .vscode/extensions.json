@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets",
+    "esbenp.prettier-vscode",
+    "Prisma.prisma",
+    "bradlc.vscode-tailwindcss",
+    "stylelint.vscode-stylelint",
+    "csstools.postcss",
+    "mikestead.dotenv"
+  ]
+}
