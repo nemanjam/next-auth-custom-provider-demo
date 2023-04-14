@@ -15,7 +15,8 @@ const UberProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
       url: 'https://login.uber.com/oauth/v2/authorize',
       params: {
         // scope must be explicitly omitted in development
-        scope: undefined, // 'profile',
+        scope: undefined,
+        // scope: 'profile',
         // next-auth passes by default, double params
         // client_id: options.clientId,
         // redirect_uri,
@@ -23,30 +24,32 @@ const UberProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
       },
     },
     token: 'https://login.uber.com/oauth/v2/token',
-    userinfo: 'https://api.uber.com/v1.2/me',
+    // userinfo: 'https://api.uber.com/v1.2/me',
 
-    // userinfo: {
-    //   async request(context) {
-    //     try {
-    //       const { access_token, expires_at, refresh_token } = context.tokens;
+    userinfo: {
+      async request(context) {
+        try {
+          const { access_token, expires_at, refresh_token } = context.tokens;
 
-    //       const options = {
-    //         method: 'GET',
-    //         url: 'https://api.uber.com/v1.2/me',
-    //         headers: {
-    //           Authorization: 'Bearer ' + access_token,
-    //           'Accept-Language': 'en_US',
-    //           'Content-Type': 'application/json',
-    //         },
-    //       };
+          console.log('access_token', access_token);
 
-    //       const { data: user } = await axios(options);
-    //       return user;
-    //     } catch (error) {
-    //       // console.log(error);
-    //     }
-    //   },
-    // },
+          const options = {
+            method: 'GET',
+            url: 'https://api.uber.com/v1.2/me',
+            headers: {
+              Authorization: 'Bearer ' + access_token,
+              'Accept-Language': 'en_US',
+              'Content-Type': 'application/json',
+            },
+          };
+
+          const { data: user } = await axios(options);
+          return user;
+        } catch (error) {
+          // console.log(error);
+        }
+      },
+    },
 
     profile: (profile) => {
       console.log('profile', profile);
