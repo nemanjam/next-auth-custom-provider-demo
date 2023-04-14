@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../../lib/prisma'
-import { getSession } from 'next-auth/react'
-
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import prisma from 'lib/prisma';
 
 // POST /api/post
 // Required fields in body: title
@@ -20,6 +19,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     });
     res.json(result);
   } else {
-    res.status(401).send({ message: 'Unauthorized' })
+    res.status(401).send({ message: 'Unauthorized' });
   }
 }

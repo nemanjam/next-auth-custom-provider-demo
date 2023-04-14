@@ -1,0 +1,8 @@
+node_modules
+.next
+yarn.lock
+package-lock.json
+public
+tsconfig.tsbuildinfo
+prisma/dev.db
+prisma/dev.db-journal
