@@ -9,19 +9,19 @@
 
 #### References
 
-Main OAuth example code
+Main OAuth example code:
 
 - https://github.dev/square/connect-api-examples/tree/master/connect-examples/oauth/node
 
-Get merchant profile
+Get merchant profile:
 
 - https://developer.squareup.com/reference/square/merchants-api/retrieve-merchant
 
-Next-auth example for `token` and `userinfo` callbacks
+Next-auth example for `token` and `userinfo` callbacks:
 
 - https://stackoverflow.com/questions/73345086/next-auth-custom-provider-oidc-nonce-check
 
-Next-auth OAuth docs
+Next-auth OAuth docs:
 
 - https://next-auth.js.org/configuration/providers/oauth#userinfo-option
 
