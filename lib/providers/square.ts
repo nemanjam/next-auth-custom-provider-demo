@@ -86,7 +86,7 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
       return {
         id: profile.id,
         name: profile.businessName,
-        email: `${profile.businessName}-merchants@square.com`, // dummy email
+        email: `${profile.businessName.replace(/\s+/g, '-').toLowerCase()}@square.com`, // dummy email
       };
     },
   },

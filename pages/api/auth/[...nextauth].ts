@@ -24,19 +24,30 @@ const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt(context) {
+      console.log('jwt context', context);
+      const { token, user, account } = context;
+
       if (user) {
         token.id = user.id;
       }
       return token;
     },
-    async session({ session, user }) {
-      session.user.id = user.id;
+    async session(context) {
+      console.log('session context', context);
+      const { session, token } = context;
+
+      session.user.id = token.id as string;
       return session;
     },
   },
   secret: process.env.SECRET,
   adapter: PrismaAdapter(prisma),
+  debug: true,
+  session: {
+    strategy: 'jwt',
+    maxAge: 60 * 60, // 1h
+  },
 };
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);

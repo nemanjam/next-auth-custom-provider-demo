@@ -7,7 +7,7 @@
 - https://developer.squareup.com/apps
 - https://squareupsandbox.com/dashboard/
 
-#### References
+### References
 
 Main OAuth example code:
 

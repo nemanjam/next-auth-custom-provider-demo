@@ -2,6 +2,18 @@ import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const deleteAllTables = async () => {
+  console.log('Deleting tables ...');
+  await prisma.$transaction([
+    prisma.post.deleteMany(),
+    prisma.account.deleteMany(),
+    prisma.session.deleteMany(),
+    prisma.verificationToken.deleteMany(),
+    prisma.user.deleteMany(),
+  ]);
+  console.log('Tables deleted.');
+};
+
 const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Alice',
@@ -49,6 +61,8 @@ const userData: Prisma.UserCreateInput[] = [
 ];
 
 async function main() {
+  await deleteAllTables();
+
   console.log(`Start seeding ...`);
   for (const u of userData) {
     const user = await prisma.user.create({
