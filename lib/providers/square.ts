@@ -3,7 +3,7 @@ import type { TokenSetParameters } from 'openid-client';
 import { Client, Environment, Merchant } from 'square';
 import { OAuthProviderOptions } from 'types';
 
-const redirect_uri = `${process.env.NEXTAUTH_URL}/api/auth/callback/square`;
+const callbackUrl = `${process.env.NEXTAUTH_URL}/api/auth/callback/square`;
 
 const squareClientConfig = {
   environment: Environment.Sandbox,
@@ -17,7 +17,7 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
     type: 'oauth',
     version: '2.0',
     // set in dashboard
-    callbackUrl: redirect_uri,
+    callbackUrl,
     authorization: {
       url: 'https://connect.squareupsandbox.com/oauth2/authorize',
       params: {
@@ -36,7 +36,7 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
           const oauthInstance = squareClient.oAuthApi;
           const { result } = await oauthInstance.obtainToken({
             code,
-            redirectUri: redirect_uri, // must pass it here too
+            redirectUri: callbackUrl, // must pass it here too
             clientId: options.clientId,
             clientSecret: options.clientSecret,
             grantType: 'authorization_code',

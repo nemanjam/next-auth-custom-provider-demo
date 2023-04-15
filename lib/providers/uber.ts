@@ -2,7 +2,7 @@ import { OAuthConfig } from 'next-auth/providers';
 import axios from 'axios';
 import { OAuthProviderOptions } from 'types';
 
-const redirect_uri = `${process.env.NEXTAUTH_URL}/api/auth/callback/uber`;
+const callbackUrl = `${process.env.NEXTAUTH_URL}/api/auth/callback/uber`;
 
 const UberProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
   ...{
@@ -10,7 +10,7 @@ const UberProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
     name: 'Uber',
     type: 'oauth',
     version: '2.0',
-    callbackUrl: redirect_uri,
+    callbackUrl,
     authorization: {
       url: 'https://login.uber.com/oauth/v2/authorize',
       params: {
@@ -19,13 +19,13 @@ const UberProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
         // scope: 'profile',
         // next-auth passes by default, double params
         // client_id: options.clientId,
-        // redirect_uri,
+        // redirect_uri: callbackUrl,
         // response_type: 'code',
       },
     },
     token: 'https://login.uber.com/oauth/v2/token',
-    // userinfo: 'https://api.uber.com/v1.2/me',
 
+    // userinfo: 'https://api.uber.com/v1.2/me',
     userinfo: {
       async request(context) {
         try {
