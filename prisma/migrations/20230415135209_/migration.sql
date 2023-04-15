@@ -4,14 +4,14 @@ CREATE TABLE "Post" (
     "title" TEXT NOT NULL,
     "content" TEXT,
     "published" BOOLEAN NOT NULL DEFAULT false,
-    "authorId" TEXT,
+    "authorId" INTEGER,
     CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "users" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "accounts" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "user_id" TEXT NOT NULL,
+    "user_id" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
     "provider_account_id" TEXT NOT NULL,
@@ -31,14 +31,14 @@ CREATE TABLE "accounts" (
 CREATE TABLE "sessions" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "session_token" TEXT NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_id" INTEGER NOT NULL,
     "expires" DATETIME NOT NULL,
     CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "users" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT,
     "email" TEXT,
     "email_verified" DATETIME,

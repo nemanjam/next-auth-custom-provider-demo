@@ -43,7 +43,7 @@ const options: NextAuthOptions = {
   },
   secret: process.env.SECRET,
   adapter: PrismaAdapter(prisma),
-  debug: true,
+  debug: false,
   session: {
     strategy: 'jwt',
     maxAge: 60 * 60, // 1h

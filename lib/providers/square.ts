@@ -44,7 +44,7 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
 
           // match interface for Account Prisma model
           const tokens: TokenSetParameters = {
-            userId: result.merchantId,
+            providerAccountId: result.merchantId,
             access_token: result.accessToken,
             refresh_token: result.refreshToken,
             expires_at: new Date(result.expiresAt).getTime() / 1000, // ms to sec to fit INT
@@ -61,7 +61,8 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
       async request(context) {
         try {
           // refresh_token, expires_at can be used for refreshing access_token without manual sign in
-          const { access_token, userId, refresh_token, expires_at } = context.tokens;
+          const { access_token, providerAccountId, refresh_token, expires_at } =
+            context.tokens;
 
           // create Api client
           // must create new client with accessToken
@@ -70,7 +71,7 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
             accessToken: access_token,
           });
           const { result } = await squareClient.merchantsApi.retrieveMerchant(
-            userId as string
+            providerAccountId as string
           );
 
           // match request() signature
