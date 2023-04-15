@@ -28,3 +28,7 @@ Next-auth OAuth docs:
 Next-auth provider examples:
 
 https://github.com/nextauthjs/next-auth/tree/main/packages/next-auth/src/providers
+
+`getServerSession` in api:
+
+https://next-auth.js.org/configuration/nextjs#unstable_getserversession

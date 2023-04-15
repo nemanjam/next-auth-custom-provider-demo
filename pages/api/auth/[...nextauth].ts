@@ -4,7 +4,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from 'lib/prisma';
 import Square from 'lib/providers/square';
 
-const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     // Twilio({
     //   clientId: process.env.TWILIO_ACCOUNT_SID,
@@ -53,6 +53,6 @@ const options: NextAuthOptions = {
   },
 };
 
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, authOptions);
 
 export default authHandler;

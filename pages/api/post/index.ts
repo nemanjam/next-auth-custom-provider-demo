@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 import prisma from 'lib/prisma';
+import { authOptions } from 'pages/api/auth/[...nextauth]';
+import { getServerSession } from 'next-auth/next';
 
 // POST /api/post
 // Required fields in body: title
@@ -8,9 +9,7 @@ import prisma from 'lib/prisma';
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { title, content } = req.body;
 
-  const session = await getSession({ req });
-
-  console.log('/api/post session', session);
+  const session = await getServerSession(req, res, authOptions);
 
   if (session) {
     const result = await prisma.post.create({
