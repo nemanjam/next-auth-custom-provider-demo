@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
 const Header: React.FC = () => {
@@ -10,20 +10,28 @@ const Header: React.FC = () => {
 
   const { data: session, status } = useSession();
 
-  // console.log('session', session, 'status', status);
+  const handleReseed = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    try {
+      await fetch('/api/seed', {
+        method: 'GET',
+      });
+      await Router.push('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   let left = (
     <div className="left">
       <Link href="/" legacyBehavior>
-        <a className="bold" data-active={isActive('/')}>
-          Feed
-        </a>
+        <a data-active={isActive('/')}>Feed</a>
       </Link>
+      <a href="#" onClick={handleReseed}>
+        Reseed
+      </a>
       <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
         a {
           text-decoration: none;
           color: #000;
@@ -31,7 +39,8 @@ const Header: React.FC = () => {
         }
 
         .left a[data-active='true'] {
-          color: gray;
+          text-decoration: underline;
+          font-weight: bold;
         }
 
         a + a {
@@ -47,15 +56,12 @@ const Header: React.FC = () => {
     left = (
       <div className="left">
         <Link href="/" legacyBehavior>
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
+          <a data-active={isActive('/')}>Feed</a>
         </Link>
+        <a href="#" onClick={handleReseed}>
+          Reseed
+        </a>
         <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
           a {
             text-decoration: none;
             color: #000;
@@ -63,7 +69,8 @@ const Header: React.FC = () => {
           }
 
           .left a[data-active='true'] {
-            color: gray;
+            text-decoration: underline;
+            font-weight: bold;
           }
 
           a + a {
@@ -119,18 +126,15 @@ const Header: React.FC = () => {
     left = (
       <div className="left">
         <Link href="/" legacyBehavior>
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
+          <a data-active={isActive('/')}>Feed</a>
         </Link>
         <Link href="/drafts" legacyBehavior>
           <a data-active={isActive('/drafts')}>My drafts</a>
         </Link>
+        <a href="#" onClick={handleReseed}>
+          Reseed
+        </a>
         <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
           a {
             text-decoration: none;
             color: #000;
@@ -138,7 +142,8 @@ const Header: React.FC = () => {
           }
 
           .left a[data-active='true'] {
-            color: gray;
+            text-decoration: underline;
+            font-weight: bold;
           }
 
           a + a {
