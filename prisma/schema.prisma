@@ -12,13 +12,13 @@ model Post {
   title     String
   content   String?
   published Boolean @default(false)
+  authorId  String?
   author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
 }
 
 model Account {
   id                 Int     @id @default(autoincrement())
-  userId             Int     @map("user_id")
+  userId             String  @map("user_id")
   type               String
   provider           String
   providerAccountId  String  @map("provider_account_id")
@@ -41,7 +41,7 @@ model Account {
 model Session {
   id           Int      @id @default(autoincrement())
   sessionToken String   @unique @map("session_token")
-  userId       Int      @map("user_id")
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -49,7 +49,7 @@ model Session {
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
+  id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")

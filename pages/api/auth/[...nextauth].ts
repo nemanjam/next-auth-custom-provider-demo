@@ -2,10 +2,7 @@ import { NextApiHandler } from 'next';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from 'lib/prisma';
-import Uber from 'lib/providers/uber';
-
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
-export default authHandler;
+import Square from 'lib/providers/square';
 
 const options: NextAuthOptions = {
   providers: [
@@ -17,9 +14,13 @@ const options: NextAuthOptions = {
     //   clientId: process.env.YELP_CLIENT_ID,
     //   clientSecret: process.env.YELP_CLIENT_SECRET,
     // }),
-    Uber({
-      clientId: process.env.UBER_CLIENT_ID,
-      clientSecret: process.env.UBER_CLIENT_SECRET,
+    // Uber({
+    //   clientId: process.env.UBER_CLIENT_ID,
+    //   clientSecret: process.env.UBER_CLIENT_SECRET,
+    // }),
+    Square({
+      clientId: process.env.SQUARE_APPLICATION_ID,
+      clientSecret: process.env.SQUARE_APPLICATION_SECRET,
     }),
   ],
   callbacks: {
@@ -34,6 +35,9 @@ const options: NextAuthOptions = {
       return session;
     },
   },
-  adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
+  adapter: PrismaAdapter(prisma),
 };
+
+const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+export default authHandler;

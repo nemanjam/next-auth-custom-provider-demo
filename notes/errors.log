@@ -1,0 +1,108 @@
+userinfo context {
+  provider: {
+    id: 'uber',
+    name: 'Uber',
+    type: 'oauth',
+    version: '2.0',
+    callbackUrl: 'http://localhost:3000/api/auth/callback/uber',
+    authorization: {
+      url: 'https://login.uber.com/oauth/v2/authorize',
+      params: [Object]
+    },
+    token: { url: 'https://login.uber.com/oauth/v2/token', params: {} },
+    userinfo: { request: [Function: request] },
+    profile: [Function: profile],
+    clientId: 'RuOgVcYA0d90yJGbaraQnrWyJC1k1eBp',
+    clientSecret: 'pwLKzfsOyITwZtkFWDAPf8rI436anx3Lk8u3TqFJ',
+    idToken: false,
+    checks: [ 'state' ],
+    signinUrl: 'http://localhost:3000/api/auth/signin/uber'
+  },
+  tokens: TokenSet {
+    access_token: 'IA.VUNmGAAAAAAAEgASAAAABwAIAAwAAAAAAAAAEgAAAAAAAAGgAAAAFAAAAAAADgAQAAQAAAAIAAwAAAAOAAAAdAAAABwAAAAEAAAAEAAAAGbllV8IfEOWPl-gORW5W5FOAAAAlWOXW_hx0DVm2pdE6Dx9BWexY5ROpqn3Vaq3KWggBu6rigevbiLuLCBlDUYZrT8r4L2gSvSbO4d5ckk9KJM3h37LMhAw2VdjCrr2m995AAAMAAAAa5PXTCDGuOZavTmkJAAAAGIwZDg1ODAzLTM4YTAtNDJiMy04MDZlLTdhNGNmOGUxOTZlZQ',
+    token_type: 'Bearer',
+    expires_at: 1684081745,
+    refresh_token: 'MA.CAESEAMvAagsLUM2tgQFf8QmQ8YiATEyATE.Znb2aFilv3pKOSmaBAYEmkQhe7xRFdX06Y8ScCcNuH4.YCUNUBNCNEsR_FP1q0ViExUtIPa33oWsXbfCMRlliu0',
+    scope: 'offline_access'
+  },
+  client: Client {
+    authorization_signed_response_alg: 'RS256',
+    client_id: 'RuOgVcYA0d90yJGbaraQnrWyJC1k1eBp',
+    client_secret: 'pwLKzfsOyITwZtkFWDAPf8rI436anx3Lk8u3TqFJ',
+    grant_types: [
+      'authorization_code'
+    ],
+    id_token_signed_response_alg: 'RS256',
+    redirect_uris: [
+      'http://localhost:3000/api/auth/callback/uber'
+    ],
+    response_types: [
+      'code'
+    ],
+    token_endpoint_auth_method: 'client_secret_basic'
+  }
+}
+profile null
+
+
+
+
+IA.VUNmGAAAAAAAEgASAAAABwAIAAwAAAAAAAAAEgAAAAAAAAGgAAAAFAAAAAAADgAQAAQAAAAIAAwAAAAOAAAAdAAAABwAAAAEAAAAEAAAAD2z-4Nqz2eioC-fzTzHwv5OAAAASGj1PHl7OpIdvOK8bGTHQpWbtjP3bjrbOoAM7uVwhZZB7y-E-h_0B2NcipscNwbwNsepZZBxtEg7XsaLjgssyz2mnW7spFIBN803lTJbAAAMAAAAT7slxAQZatktbG6KJAAAAGIwZDg1ODAzLTM4YTAtNDJiMy04MDZlLTdhNGNmOGUxOTZlZQ
+
+
+
+
+curl -H 'Authorization: Bearer IA.VUNmGAAAAAAAEgASAAAABwAIAAwAAAAAAAAAEgAAAAAAAAGgAAAAFAAAAAAADgAQAAQAAAAIAAwAAAAOAAAAdAAAABwAAAAEAAAAEAAAAD2z-4Nqz2eioC-fzTzHwv5OAAAASGj1PHl7OpIdvOK8bGTHQpWbtjP3bjrbOoAM7uVwhZZB7y-E-h_0B2NcipscNwbwNsepZZBxtEg7XsaLjgssyz2mnW7spFIBN803lTJbAAAMAAAAT7slxAQZatktbG6KJAAAAGIwZDg1ODAzLTM4YTAtNDJiMy04MDZlLTdhNGNmOGUxOTZlZQ' \
+     -H 'Accept-Language: en_US' \
+     -H 'Content-Type: application/json' \
+     'https://api.uber.com/v1.2/me'
+
+
+
+
+
+Invalid `p.account.create()` invocation in
+/home/username/Desktop/next-auth-custom-provider-demo/node_modules/@next-auth/prisma-adapter/dist/index.js:19:42
+
+  16 },
+  17 updateUser: ({ id, ...data }) => p.user.update({ where: { id }, data }),
+  18 deleteUser: (id) => p.user.delete({ where: { id } }),
+→ 19 linkAccount: (data) => p.account.create({
+       data: {
+         provider: 'square',
+         type: 'oauth',
+         providerAccountId: 'MLZ8QHF6HWW7N',
+         accessToken: 'EAAAEJS6E5xfFKz3zw7BEURrxaE9CiLm2CRGoccykk9ulElcvUG3yX_wa8pstkWa',
+         ~~~~~~~~~~~
+         tokenType: 'bearer',
+         ~~~~~~~~~
+         expiresAt: '2023-05-15T10:30:58Z',
+         ~~~~~~~~~
+         merchantId: 'MLZ8QHF6HWW7N',
+         ~~~~~~~~~~
+         refreshToken: 'EQAAECTgdr-IBjHE2jzGy6CCz5y0uZQkgUGjRgeHNxcsEqGdbbcusogBTZOMzG2d',
+         ~~~~~~~~~~~~
+         shortLived: false,
+         ~~~~~~~~~~
+         userId: 4
+       }
+     })
+
+Unknown arg `accessToken` in data.accessToken for type AccountUncheckedCreateInput. Did you mean `access_token`? Available args:
+type AccountUncheckedCreateInput {
+  id?: Int
+  userId: Int
+  type: String
+  provider: String
+  providerAccountId: String
+  refresh_token?: String | Null
+  access_token?: String | Null
+  expires_at?: Int | Null
+  token_type?: String | Null
+  scope?: String | Null
+  id_token?: String | Null
+  session_state?: String | Null
+  oauth_token_secret?: String | Null
+  oauth_token?: String | Null
+}
+

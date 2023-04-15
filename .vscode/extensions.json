@@ -6,6 +6,9 @@
     "bradlc.vscode-tailwindcss",
     "stylelint.vscode-stylelint",
     "csstools.postcss",
-    "mikestead.dotenv"
+    "mikestead.dotenv",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-sqlite",
+    "mtxr.sqltools-driver-pg"
   ]
 }

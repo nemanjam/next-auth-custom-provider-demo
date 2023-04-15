@@ -11,5 +11,14 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "custom-provider",
+      "database": "${workspaceFolder:next-auth-custom-provider-demo}/prisma/dev.db"
+    }
+  ]
 }

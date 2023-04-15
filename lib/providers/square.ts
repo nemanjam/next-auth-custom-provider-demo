@@ -1,21 +1,19 @@
 import { OAuthConfig } from 'next-auth/providers';
 import type { TokenSetParameters } from 'openid-client';
-import axios from 'axios';
-import { ApiError, Client, Environment } from 'square';
+import { Client, Environment, Merchant } from 'square';
 import { OAuthProviderOptions } from 'types';
 
 const redirect_uri = `${process.env.NEXTAUTH_URL}/api/auth/callback/square`;
 
-const squareClient = new Client({
+const squareClientConfig = {
   environment: Environment.Sandbox,
   userAgentDetail: 'first-app',
-});
-const oauthInstance = squareClient.oAuthApi;
+};
 
-const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
+const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> => ({
   ...{
-    id: 'uber',
-    name: 'Uber',
+    id: 'square',
+    name: 'Square',
     type: 'oauth',
     version: '2.0',
     // set in dashboard
@@ -31,20 +29,29 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
     },
     token: {
       async request(context) {
-        console.log('token context', context);
-
         try {
           const { code } = context.params;
 
+          const squareClient = new Client(squareClientConfig);
+          const oauthInstance = squareClient.oAuthApi;
           const { result } = await oauthInstance.obtainToken({
             code,
-            clientId: process.env.SQUARE_APPLICATION_ID,
-            clientSecret: process.env.SQUARE_APPLICATION_SECRET,
+            redirectUri: redirect_uri, // must pass it here too
+            clientId: options.clientId,
+            clientSecret: options.clientSecret,
             grantType: 'authorization_code',
           });
 
-          // const { accessToken, refreshToken, expiresAt, merchantId } = result;
-          return { tokens: result as TokenSetParameters };
+          // match interface for Account Prisma model
+          const tokens: TokenSetParameters = {
+            userId: result.merchantId,
+            access_token: result.accessToken,
+            refresh_token: result.refreshToken,
+            expires_at: new Date(result.expiresAt).getTime() / 1000, // ms to sec to fit INT
+            token_type: result.tokenType,
+          };
+
+          return { tokens };
         } catch (error) {
           console.log(error);
         }
@@ -53,38 +60,33 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
     userinfo: {
       async request(context) {
         try {
-          const { accessToken, refreshToken, expiresAt, merchantId } = context.tokens;
+          // refresh_token, expires_at can be used for refreshing access_token without manual sign in
+          const { access_token, userId, refresh_token, expires_at } = context.tokens;
 
-          console.log('accessToken', accessToken);
+          // create Api client
+          // must create new client with accessToken
+          const squareClient = new Client({
+            ...squareClientConfig,
+            accessToken: access_token,
+          });
+          const { result } = await squareClient.merchantsApi.retrieveMerchant(
+            userId as string
+          );
 
-          // here
-
-          const options = {
-            method: 'GET',
-            url: 'https://api.uber.com/v1.2/me',
-            headers: {
-              Authorization: 'Bearer ' + access_token,
-              'Accept-Language': 'en_US',
-              'Content-Type': 'application/json',
-            },
-          };
-
-          const { data: user } = await axios(options);
-          return user;
+          // match request() signature
+          return result.merchant as any;
         } catch (error) {
-          // console.log(error);
+          console.log(error);
         }
       },
     },
 
     profile: (profile) => {
-      console.log('profile', profile);
-
+      // must match Prisma User model
       return {
         id: profile.id,
-        name: `${profile.first_name} ${profile.last_name}`,
-        email: profile.email,
-        image: profile.picture,
+        name: profile.businessName,
+        email: `${profile.businessName}-merchants@square.com`, // dummy email
       };
     },
   },
@@ -92,3 +94,16 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<any> => ({
 });
 
 export default SquareProvider;
+
+/**
+  merchant example data:
+
+  id: 'MLZ8QHF6HWW7N',
+  businessName: 'test-account',
+  country: 'US',
+  languageCode: 'en-US',
+  currency: 'USD',
+  status: 'ACTIVE',
+  mainLocationId: 'LQPAFJYHWKYX3',
+  createdAt: '2023-04-15T07:07:26.543Z'
+*/
