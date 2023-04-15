@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
 const Header: React.FC = () => {
   const router = useRouter();
+  const [isReseeding, setIsReseeding] = useState(false);
+
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
@@ -14,10 +16,12 @@ const Header: React.FC = () => {
     e.preventDefault();
 
     try {
+      setIsReseeding(true);
       await fetch('/api/seed', {
-        method: 'GET',
+        method: 'POST',
       });
-      await Router.push('/');
+      setIsReseeding(false);
+      signOut();
     } catch (error) {
       console.error(error);
     }
@@ -29,7 +33,7 @@ const Header: React.FC = () => {
         <a data-active={isActive('/')}>Feed</a>
       </Link>
       <a href="#" onClick={handleReseed}>
-        Reseed
+        {isReseeding ? 'Seeding...' : 'Reseed'}
       </a>
       <style jsx>{`
         a {
@@ -59,7 +63,7 @@ const Header: React.FC = () => {
           <a data-active={isActive('/')}>Feed</a>
         </Link>
         <a href="#" onClick={handleReseed}>
-          Reseed
+          {isReseeding ? 'Seeding...' : 'Reseed'}
         </a>
         <style jsx>{`
           a {
@@ -132,7 +136,7 @@ const Header: React.FC = () => {
           <a data-active={isActive('/drafts')}>My drafts</a>
         </Link>
         <a href="#" onClick={handleReseed}>
-          Reseed
+          {isReseeding ? 'Seeding...' : 'Reseed'}
         </a>
         <style jsx>{`
           a {
@@ -154,9 +158,16 @@ const Header: React.FC = () => {
     );
     right = (
       <div className="right">
-        <p>
-          {session.user.name} ({session.user.email})
-        </p>
+        <div className="user-info">
+          <div>
+            <label>Name:</label>
+            <span>{session.user.name}</span>
+          </div>
+          <div>
+            <label>Email:</label>
+            <span>({session.user.email})</span>
+          </div>
+        </div>
         <Link href="/create" legacyBehavior>
           <button>
             <a>New post</a>
@@ -166,16 +177,29 @@ const Header: React.FC = () => {
           <a>Log out</a>
         </button>
         <style jsx>{`
+          .user-info {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 1rem;
+          }
+
           a {
             text-decoration: none;
             color: #000;
             display: inline-block;
           }
 
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
+          label {
+            display: inline;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+          }
+
+          span {
+            font-size: 12px;
+            margin: 0;
           }
 
           a + a {
@@ -184,6 +208,8 @@ const Header: React.FC = () => {
 
           .right {
             margin-left: auto;
+            display: flex;
+            align-items: center;
           }
 
           .right a {

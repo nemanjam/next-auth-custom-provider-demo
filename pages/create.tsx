@@ -65,7 +65,7 @@ const Draft: React.FC = () => {
         }
 
         input[type='submit'] {
-          background: #ececec;
+          background: #e2e2e2;
           border: 0;
           padding: 1rem 2rem;
         }

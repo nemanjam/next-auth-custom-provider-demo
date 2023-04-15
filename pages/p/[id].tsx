@@ -73,7 +73,7 @@ const Post: React.FC<PostProps> = (props) => {
         }
 
         button {
-          background: #ececec;
+          background: #e2e2e2;
           border: 0;
           border-radius: 0.125rem;
           padding: 1rem 2rem;
