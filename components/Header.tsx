@@ -10,6 +10,8 @@ const Header: React.FC = () => {
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
+  const showReseed = router.pathname === '/';
+
   const { data: session, status } = useSession();
 
   const handleReseed = async (e: React.SyntheticEvent) => {
@@ -32,9 +34,11 @@ const Header: React.FC = () => {
       <Link href="/" legacyBehavior>
         <a data-active={isActive('/')}>Feed</a>
       </Link>
-      <a href="#" onClick={handleReseed}>
-        {isReseeding ? 'Seeding...' : 'Reseed'}
-      </a>
+      {showReseed && (
+        <a href="#" onClick={handleReseed}>
+          {isReseeding ? 'Seeding...' : 'Reseed'}
+        </a>
+      )}
       <style jsx>{`
         a {
           text-decoration: none;
@@ -62,9 +66,11 @@ const Header: React.FC = () => {
         <Link href="/" legacyBehavior>
           <a data-active={isActive('/')}>Feed</a>
         </Link>
-        <a href="#" onClick={handleReseed}>
-          {isReseeding ? 'Seeding...' : 'Reseed'}
-        </a>
+        {showReseed && (
+          <a href="#" onClick={handleReseed}>
+            {isReseeding ? 'Seeding...' : 'Reseed'}
+          </a>
+        )}
         <style jsx>{`
           a {
             text-decoration: none;
@@ -135,9 +141,11 @@ const Header: React.FC = () => {
         <Link href="/drafts" legacyBehavior>
           <a data-active={isActive('/drafts')}>My drafts</a>
         </Link>
-        <a href="#" onClick={handleReseed}>
-          {isReseeding ? 'Seeding...' : 'Reseed'}
-        </a>
+        {showReseed && (
+          <a href="#" onClick={handleReseed}>
+            {isReseeding ? 'Seeding...' : 'Reseed'}
+          </a>
+        )}
         <style jsx>{`
           a {
             text-decoration: none;
