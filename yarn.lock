@@ -20,6 +20,104 @@
   resolved "https://registry.yarnpkg.com/@apidevtools/swagger-methods/-/swagger-methods-3.0.2.tgz#b789a362e055b0340d04712eafe7027ddc1ac267"
   integrity sha512-QAkD5kK2b1WfjDS/UQn/qQkbwF31uqRjPTrsCs5ZG9BQGAkjwvqGFjjPqAuzac/IYzpPtRzjCP1WrTuAIjMrXg==
 
+"@apimatic/authentication-adapters@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/authentication-adapters/-/authentication-adapters-0.1.0.tgz#28d5081028df106414a88169d01e7d83232a966a"
+  integrity sha512-+MIfA5qIt7O3jblwA5eF2DOzFvlhqMdq2XVNqq0o8L8Y6H7YKfemEsK0jXz+7G4QKALKE6vysIEvW8RgpzjEoA==
+  dependencies:
+    "@apimatic/core-interfaces" "^0.1.0"
+    "@apimatic/http-headers" "^0.1.0"
+    "@apimatic/http-query" "^0.1.0"
+    tslib "^2.1.0"
+
+"@apimatic/axios-client-adapter@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/axios-client-adapter/-/axios-client-adapter-0.1.0.tgz#af963c6a387783160d1c042850c7208a76af5e72"
+  integrity sha512-MG8wpiANN/5mqzWHArfpfQCCmKCtnNMnTMKWBD3TlmG54O+LxRXSlY7KP/WN5fJTH3YXs1xbew8Qc1TAZMQ98g==
+  dependencies:
+    "@apimatic/convert-to-stream" "^0.0.2"
+    "@apimatic/core-interfaces" "^0.1.0"
+    "@apimatic/file-wrapper" "^0.1.0"
+    "@apimatic/http-headers" "^0.1.0"
+    "@apimatic/http-query" "^0.1.0"
+    "@apimatic/json-bigint" "^1.2.0"
+    "@apimatic/schema" "^0.6.0"
+    axios "^0.21.1"
+    detect-browser "^5.3.0"
+    detect-node "^2.0.4"
+    form-data "^3.0.0"
+    lodash.flatmap "^4.5.0"
+    tiny-warning "^1.0.3"
+    tslib "^2.1.0"
+
+"@apimatic/convert-to-stream@^0.0.2", "@apimatic/convert-to-stream@~0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@apimatic/convert-to-stream/-/convert-to-stream-0.0.2.tgz#7d9942071291011c4576de97619d974face8acaa"
+  integrity sha512-1DRg17ItExfMYsXwjt6WIjJSCgV5RGg3fHPLgYD44/YmiU+7suWj7YfPKKUqmNcnJ/AvMh4lG1+tHrfOT01zXw==
+
+"@apimatic/core-interfaces@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/core-interfaces/-/core-interfaces-0.1.0.tgz#d5ea9cc3d24d019d6feff81a3abfc3266e64919e"
+  integrity sha512-rHdAExd/2axvd0JoT6xpMbpKm9qvvT3ccS6G1pjzZTtb3Y4SS3nDyc/jT39mQ1fWAaELqFj1gEjmm10FgAbGRw==
+  dependencies:
+    "@apimatic/file-wrapper" "^0.1.0"
+    tslib "^2.1.0"
+
+"@apimatic/core@^0.9.0":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@apimatic/core/-/core-0.9.3.tgz#8807bf8fc1a53d4b91e735c9f139ef90c5591287"
+  integrity sha512-LCs5jI6R1db0Tnhfakm1SxzU6cIGGiSIi5d9KdghsxLtlTd3+U411n5lxldtDKmMrVFGVZ8OySZ1/9o9qeGwyQ==
+  dependencies:
+    "@apimatic/convert-to-stream" "~0.0.2"
+    "@apimatic/core-interfaces" "^0.1.0"
+    "@apimatic/file-wrapper" "^0.1.0"
+    "@apimatic/http-headers" "^0.1.0"
+    "@apimatic/http-query" "^0.1.0"
+    "@apimatic/json-bigint" "^1.2.0"
+    "@apimatic/schema" "^0.6.0"
+    axios "^0.21.1"
+    detect-browser "^5.3.0"
+    detect-node "^2.0.4"
+    form-data "^3.0.0"
+    json-ptr "^3.1.0"
+    lodash.flatmap "^4.5.0"
+    tiny-warning "^1.0.3"
+    tslib "^2.1.0"
+
+"@apimatic/file-wrapper@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/file-wrapper/-/file-wrapper-0.1.0.tgz#24b5e8a583df051dd522b4e787edfcda1be5b909"
+  integrity sha512-9YnaUSKODtCJ16ViQAc1QosFBuX/usl4ISJR/o4fPU89rZZahp99f9XInhPBl7vhSKjX88DByt12JtPIiu7LRA==
+  dependencies:
+    tslib "^2.1.0"
+
+"@apimatic/http-headers@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/http-headers/-/http-headers-0.1.0.tgz#436134c565cb5c0ea5dd48a965e8238f881462c3"
+  integrity sha512-eZfPP9Hy0E9lzUk7rS6fwIo7HWxeM6k4/YBbjZZ8GdlbfiawuF+84B0oQ6BtTTZvJou2uDXO7KNyL9UbFfE0oA==
+  dependencies:
+    tslib "^2.1.0"
+
+"@apimatic/http-query@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/http-query/-/http-query-0.1.0.tgz#7c8bf19e4f7664fc81c109f87cf602e86f5cf5b9"
+  integrity sha512-2qdMaReyHZi50Emo1hyZ7REuxItnx1FFhnSISLY2zOg/5JeBaBNp9/FSZuwD5TSL8osvrIrBCQskuO5L3rBz5w==
+  dependencies:
+    "@apimatic/file-wrapper" "^0.1.0"
+    tslib "^2.1.0"
+
+"@apimatic/json-bigint@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/json-bigint/-/json-bigint-1.2.0.tgz#05223455ec135976fe7a55456c2d21a3bbde56d8"
+  integrity sha512-+bmVzYMdZu0Ya5L+my4FXFUih54OvQA/qlZsFOYdOoostyUuB27UDrVWQs/WVCmS0ADdo5vTU0eeTrrBkHoySw==
+
+"@apimatic/schema@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@apimatic/schema/-/schema-0.6.0.tgz#b239f38c0e0d8509bc29dfbfd98452d71cf68617"
+  integrity sha512-JgG32LQRLphHRWsn64vIt7wD2m+JH46swM6ZrY7g1rdiGiKV5m+A+TBrJKoUUQRmS14azMgePNZY30NauWqzLg==
+  dependencies:
+    tslib "^2.1.0"
+
 "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.21.4":
   version "7.21.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.21.4.tgz#d0fa9e4413aca81f2b23b9442797bda1826edb39"
@@ -564,6 +662,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
   integrity sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==
 
+"@types/node@^14.14.30":
+  version "14.18.42"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.42.tgz#fa39b2dc8e0eba61bdf51c66502f84e23b66e114"
+  integrity sha512-xefu+RBie4xWlK8hwAzGh3npDz/4VhF6icY/shU+zv/1fNn+ZVG7T7CRwe9LId9sAYRPxI+59QBPuKL3WpyGRg==
+
 "@types/prop-types@*", "@types/prop-types@^15.0.0":
   version "15.7.5"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
@@ -722,6 +825,13 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
+
+axios@^0.21.1:
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
+  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
+  dependencies:
+    follow-redirects "^1.14.0"
 
 axios@^0.26.1:
   version "0.26.1"
@@ -1119,6 +1229,16 @@ dequal@^2.0.0:
   resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.3.tgz#2644214f1997d39ed0ee0ece72335490a7ac67be"
   integrity sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==
 
+detect-browser@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-5.3.0.tgz#9705ef2bddf46072d0f7265a1fe300e36fe7ceca"
+  integrity sha512-53rsFbGdwMwlF7qvCt0ypLM5V5/Mbl0szB7GPN8y9NCcbknYOeVVXdrXEq+90IwAfrrzt6Hd+u2E2ntakICU8w==
+
+detect-node@^2.0.4:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.1.0.tgz#c9c70775a49c3d03bc2c06d9a73be550f978f8b1"
+  integrity sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==
+
 diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
@@ -1317,7 +1437,7 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-follow-redirects@^1.14.8, follow-redirects@^1.15.0:
+follow-redirects@^1.14.0, follow-redirects@^1.14.8, follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
@@ -1326,6 +1446,15 @@ form-data-encoder@^1.7.2:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-1.9.0.tgz#fd18d316b1ec830d2a8be8ad86c1cf0317320b34"
   integrity sha512-rahaRMkN8P8d/tgK/BLPX+WBVM27NbvdXBxqQujBtkDAIFspaRqN7Od7lfdGQA6KAD+f82fYCLBq1ipvcu8qLw==
+
+form-data@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.1.tgz#ebd53791b78356a99af9a300d4282c4d5eb9755f"
+  integrity sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
 
 form-data@^4.0.0:
   version "4.0.0"
@@ -1593,6 +1722,11 @@ jsesc@^2.5.1:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
+json-ptr@^3.1.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/json-ptr/-/json-ptr-3.1.1.tgz#184c3d48db659fa9bbc1519f7db6f390ddffb659"
+  integrity sha512-SiSJQ805W1sDUCD1+/t1/1BIrveq2Fe9HJqENxZmMCILmrPI7WhS/pePpIOx85v6/H2z1Vy7AI08GV2TzfXocg==
+
 json-schema-compare@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/json-schema-compare/-/json-schema-compare-0.2.2.tgz#dd601508335a90c7f4cfadb6b2e397225c908e56"
@@ -1723,6 +1857,11 @@ lodash.deburr@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/lodash.deburr/-/lodash.deburr-4.1.0.tgz#ddb1bbb3ef07458c0177ba07de14422cb033ff9b"
   integrity sha512-m/M1U1f3ddMCs6Hq2tAsYThTBDaAKFDX3dwDo97GEYzamXi9SqUpjWi/Rrj/gf3X2n8ktwgZrlP1z6E3v/IExQ==
+
+lodash.flatmap@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.flatmap/-/lodash.flatmap-4.5.0.tgz#ef8cbf408f6e48268663345305c6acc0b778702e"
+  integrity sha512-/OcpcAGWlrZyoHGeHh3cAoa6nGdX6QYtmzNP84Jqol6UEQQ2gIaU3H+0eICcjcKGl0/XF8LWOujNn9lffsnaOg==
 
 lodash.merge@^4.6.2:
   version "4.6.2"
@@ -2834,6 +2973,18 @@ space-separated-tokens@^2.0.0:
   resolved "https://registry.yarnpkg.com/space-separated-tokens/-/space-separated-tokens-2.0.2.tgz#1ecd9d2350a3844572c3f4a312bceb018348859f"
   integrity sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==
 
+square@^25.2.0:
+  version "25.2.0"
+  resolved "https://registry.yarnpkg.com/square/-/square-25.2.0.tgz#19dcdd677c984f8bea0767c854cce069e61c77b9"
+  integrity sha512-0JtVI74Q8wqwf3CGngaB/Aj3AMDE749KJ1XZ+UlKYdJ+jZqhoLplAxKCNhW5MWLPAxb/tOBOpfP/lWYSZrz0dw==
+  dependencies:
+    "@apimatic/authentication-adapters" "^0.1.0"
+    "@apimatic/axios-client-adapter" "^0.1.0"
+    "@apimatic/core" "^0.9.0"
+    "@apimatic/json-bigint" "^1.2.0"
+    "@apimatic/schema" "^0.6.0"
+    "@types/node" "^14.14.30"
+
 ssri@^10.0.1:
   version "10.0.3"
   resolved "https://registry.yarnpkg.com/ssri/-/ssri-10.0.3.tgz#7f83da39058ca1d599d174e9eee4237659710bf4"
@@ -2947,6 +3098,11 @@ timers-ext@^0.1.7:
   dependencies:
     es5-ext "~0.10.46"
     next-tick "1"
+
+tiny-warning@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
+  integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
 to-fast-properties@^2.0.0:
   version "2.0.0"

@@ -26,6 +26,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.7",
+    "square": "^25.2.0",
     "superjson": "1.12.2",
     "twilio": "^4.10.0"
   },
