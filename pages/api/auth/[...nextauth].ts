@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from 'lib/prisma';
 import Square from 'lib/providers/square';
@@ -25,19 +25,22 @@ const options: NextAuthOptions = {
   ],
   callbacks: {
     async jwt(context) {
-      console.log('jwt context', context);
-      const { token, user, account } = context;
+      // console.log('jwt context', context);
+      const { token, user, account, profile } = context;
 
       if (user) {
-        token.id = user.id;
+        token.user = user;
       }
       return token;
     },
     async session(context) {
-      console.log('session context', context);
+      // console.log('session context', context);
       const { session, token } = context;
+      const user = token.user as User;
 
-      session.user.id = token.id as string;
+      if (session && user) {
+        session.user = user;
+      }
       return session;
     },
   },

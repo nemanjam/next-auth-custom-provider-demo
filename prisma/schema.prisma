@@ -18,7 +18,7 @@ model Post {
 
 model Account {
   id                 Int     @id @default(autoincrement())
-  userId             Int  @map("user_id")
+  userId             Int     @map("user_id")
   type               String
   provider           String
   providerAccountId  String  @map("provider_account_id")
@@ -29,8 +29,8 @@ model Account {
   scope              String?
   id_token           String?
   session_state      String?
-  oauth_token_secret String?
-  oauth_token        String?
+  // oauth_token_secret String?
+  // oauth_token        String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

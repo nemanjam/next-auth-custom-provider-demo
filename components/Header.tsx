@@ -10,6 +10,8 @@ const Header: React.FC = () => {
 
   const { data: session, status } = useSession();
 
+  // console.log('session', session, 'status', status);
+
   let left = (
     <div className="left">
       <Link href="/" legacyBehavior>
