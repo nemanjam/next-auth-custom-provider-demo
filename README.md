@@ -2,7 +2,7 @@
 
 Demo app for Next-auth custom provider using https://squareup.com OAuth provider. Provider implementation is in `lib/providers/square.ts`. Login is fully functional and uses sandbox test account, you must login with provided test account into Square dashboard and open `Default Test Account` in another tab and then you can test the login with Square in the demo.
 
-Demo allows login with Square, creating, publishing and deleting posts, and reseeding database for another test. It is hosted on Vercel and uses external Postgres database on separate server.
+Demo allows login with Square, creating, publishing and deleting posts, and reseeding database for another test. It is hosted on Vercel and uses external Postgres database on separate server. It must use low latency database or login will time out and throw error.
 
 **Demo link: https://next-auth-custom-provider-demo.vercel.app**
 
@@ -87,3 +87,28 @@ yarn prisma:seed:dev:env
 # run the app in dev mode
 yarn dev
 ```
+
+## Uber references
+
+`https://api.uber.com/v1.2/me` api is not possible to call without `profile` scope which is unavailable for unverified apps
+
+- https://developer.uber.com/docs/riders/references/api/v1.2/me-get
+- https://github.com/shernshiou/node-uber#me
+
+Not true in my experience:
+
+> The good news is you currently have access to these scopes when authorizing your own account or those of the developer accounts you list in your application dashboard (Limited Access). This allows you to start building an app immediately.
+
+- https://developer.uber.com/docs/riders/guides/scopes
+
+## Yelp references
+
+Must use business use account for test and for register Serbia isn't an option in dropdown.
+
+Useful docs links:
+
+- https://docs.developer.yelp.com/docs/authorization-code-workflow
+
+Get user endpoint:
+
+- https://docs.developer.yelp.com/reference/oauth2_token
