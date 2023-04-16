@@ -20,7 +20,7 @@
     "prisma:push:dev:env": "yarn with:dev:env prisma:push",
     "prisma:seed:dev:env": "yarn with:dev:env prisma:seed",
     "prisma:push:dev:env:bare": "dotenv -e .env.development.local -- sh -c 'yarn prisma:push'",
-    "vercel-build": "prisma generate && prisma db push && prisma db seed && next build"
+    "vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && next build"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
