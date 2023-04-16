@@ -25,6 +25,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
         select: { name: true },
       },
     },
+    orderBy: {
+      updatedAt: 'desc',
+    },
   });
   return {
     props: { drafts },

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  cp-db-dev:
+    image: postgres:14.3-bullseye
+    container_name: cp-db-dev
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    user: '${MY_UID}:${MY_GID}'
+    volumes:
+      - ./prisma/pg-data:/var/lib/postgresql/data
+    # only: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB
+    environment:
+      - PGDATA=/var/lib/postgresql/data/data-dev
+      # private vars
+      # - POSTGRES_HOSTNAME
+      # - POSTGRES_PORT
+      # - POSTGRES_USER
+      # - POSTGRES_PASSWORD
+      # - POSTGRES_DB
+    env_file:
+      - ./.env.development.local
+    networks:
+      - internal-dev
+      - external-host
+
+  adminer-dev:
+    image: 'adminer:4.8.1-standalone'
+    container_name: adminer-dev
+    ports:
+      - '8080:8080'
+    depends_on:
+      - cp-db-dev
+    networks:
+      - internal-dev
+      - external-host
+
+volumes:
+  cp-app-dev-node_modules:
+  cp-app-dev-next:
+
+networks:
+  internal-dev:
+    external: false
+  external-host:
+    external: true

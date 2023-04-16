@@ -17,6 +17,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
         },
       },
     },
+    orderBy: {
+      updatedAt: 'desc',
+    },
   });
   return {
     props: { feed },

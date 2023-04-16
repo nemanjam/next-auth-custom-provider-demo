@@ -13,8 +13,13 @@
     "prisma:migrate:dev": "npx prisma migrate dev",
     "prisma:migrate:prod": "npx prisma migrate deploy",
     "prisma:push": "npx prisma db push",
-    "prisma:push:dev:env": "dotenv -e .env.development.local -- sh -c 'yarn prisma:push'",
     "prisma:seed": "npx prisma db seed",
+    "prisma:reset": "npx prisma migrate reset dev --skip-seed",
+    "with:dev:env": "fn() { npx dotenv -e ./.env.development.local -- bash -c \"yarn $2\";}; fn --",
+    "prisma:migrate:dev:env": "yarn with:dev:env prisma:migrate:dev",
+    "prisma:push:dev:env": "yarn with:dev:env prisma:push",
+    "prisma:seed:dev:env": "yarn with:dev:env prisma:seed",
+    "prisma:push:dev:env:bare": "dotenv -e .env.development.local -- sh -c 'yarn prisma:push'",
     "vercel-build": "prisma generate && prisma db push && prisma db seed && next build"
   },
   "dependencies": {
