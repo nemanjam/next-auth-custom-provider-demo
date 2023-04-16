@@ -29,6 +29,7 @@ export const authOptions: NextAuthOptions = {
       const { token, user, account, profile } = context;
 
       if (user) {
+        // user.account = account;
         token.user = user;
       }
       return token;

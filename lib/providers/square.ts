@@ -85,7 +85,7 @@ const SquareProvider = (options: OAuthProviderOptions): OAuthConfig<Merchant> =>
     profile: (profile) => {
       // must match Prisma User model
       return {
-        id: profile.id,
+        id: profile.id, // id will be overwritten
         name: profile.businessName,
         email: `${profile.businessName.replace(/\s+/g, '-').toLowerCase()}@square.com`, // dummy email
       };
