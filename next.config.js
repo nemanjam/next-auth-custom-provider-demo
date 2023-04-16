@@ -1,11 +1,5 @@
 const { withSuperjson } = require('next-superjson');
 
-const nextConfig = {
-  experimental: { appDir: true },
-  webpack(config) {
-    config.experiments = { ...config.experiments, topLevelAwait: true };
-    return config;
-  },
-};
+const nextConfig = {};
 
 module.exports = withSuperjson()(nextConfig);
