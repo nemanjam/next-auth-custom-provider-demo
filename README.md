@@ -1,13 +1,30 @@
 # Next-auth custom provider demo
 
-## Square provider
+Demo app for Next-auth custom provider using https://squareup.com OAuth provider. Provider implementation is in `lib/providers/square.ts`. Login is fully functional and uses sandbox test account, you must login with provided test account into Square dashboard and open `Default Test Account` in another tab and then you can test the login with Square in the demo.
 
-- must use default account for sandbox
+Demo allows login with Square, creating, publishing and deleting posts, and reseeding database for another test. It is hosted on Vercel and uses external Postgres database on separate server.
 
-- https://developer.squareup.com/apps
-- https://squareupsandbox.com/dashboard/
+**Demo link: https://next-auth-custom-provider-demo.vercel.app**
 
-### References
+There are also custom provider implementations for Uber and Yelp in `lib/providers/` but they are untested and incomplete, Uber doesn't allow `profile` scope for unverified apps (even though docs states opposite) and Yelp doesn't support Serbia for business accounts.
+
+## Successful login with Square screenshot
+
+![Square login](./screenshots/screenshot-demo.png)
+
+## How to test the demo
+
+1. Go to https://developer.squareup.com/apps and sign in with provided email and password for test account
+2. Click `Open` button right from `Default Test Account`, it will lead to https://squareupsandbox.com/dashboard/ and keep that tab open while testing
+3. You can now sign in with that account in the demo https://next-auth-custom-provider-demo.vercel.app
+
+![Open test account](./screenshots/open-test-account.png)
+
+## Useful Square OAuth references
+
+Official Next.js Prisma example that is used as a starting template:
+
+- https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes-auth
 
 Main OAuth example code:
 
@@ -27,8 +44,46 @@ Next-auth OAuth docs:
 
 Next-auth provider examples:
 
-https://github.com/nextauthjs/next-auth/tree/main/packages/next-auth/src/providers
+- https://github.com/nextauthjs/next-auth/tree/main/packages/next-auth/src/providers
 
-`getServerSession` in api:
+## Running locally
 
-https://next-auth.js.org/configuration/nextjs#unstable_getserversession
+Supply the following environment variables in `.env.development.local`:
+
+```bash
+SECRET=RANDOM_STRING
+
+# local docker db
+POSTGRES_HOSTNAME=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres_user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=cp-db-dev
+
+# db url for the app
+DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOSTNAME}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public
+
+# Square
+SQUARE_APPLICATION_ID=
+SQUARE_APPLICATION_SECRET=
+SQUARE_ENVIRONMENT=sandbox
+```
+
+Then run:
+
+```bash
+# install dependencies
+yarn install
+
+# start Postgres database in Docker
+docker compose up -d
+
+# migrate database (must pass env vars)
+yarn prisma:migrate:dev:env
+
+# seed database (must pass env vars)
+yarn prisma:seed:dev:env
+
+# run the app in dev mode
+yarn dev
+```
