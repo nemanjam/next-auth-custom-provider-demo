@@ -13,7 +13,8 @@
     "prisma:migrate:dev": "npx prisma migrate dev",
     "prisma:migrate:prod": "npx prisma migrate deploy",
     "prisma:push": "npx prisma db push",
-    "prisma:seed": "npx prisma db seed"
+    "prisma:seed": "npx prisma db seed",
+    "vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && next build"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
