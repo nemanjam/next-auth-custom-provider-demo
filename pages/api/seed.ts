@@ -7,7 +7,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   req.setTimeout(10 * 1000); // 10 sec
 
   try {
-    SeedSingleton.getInstance(prisma).run();
+    await SeedSingleton.getInstance(prisma).run();
     res.status(200).json({ success: true });
   } catch (error) {
     console.error(error);

@@ -33,11 +33,23 @@ type Props = {
 const Blog: React.FC<Props> = (props) => {
   const sessionData = useSession();
 
+  const handleDoubleClick = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    try {
+      await fetch('/api/print-env', {
+        method: 'GET',
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Layout>
       <div className="page">
         <div className="title">
-          <h1>Public Feed</h1>
+          <h1 onDoubleClick={handleDoubleClick}>Public Feed</h1>
           <div>
             <label>Session data:</label>
             <pre className="code">{JSON.stringify(sessionData, null, 2)}</pre>
