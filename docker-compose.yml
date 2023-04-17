@@ -28,6 +28,7 @@ services:
   adminer-dev:
     image: 'adminer:4.8.1-standalone'
     container_name: adminer-dev
+    restart: unless-stopped
     ports:
       - '8080:8080'
     depends_on:

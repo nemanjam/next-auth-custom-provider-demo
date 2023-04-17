@@ -6,3 +6,4 @@ public
 tsconfig.tsbuildinfo
 prisma/dev.db
 prisma/dev.db-journal
+notes
