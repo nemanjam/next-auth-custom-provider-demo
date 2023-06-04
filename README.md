@@ -103,7 +103,7 @@ Not true in my experience:
 
 ## Yelp references
 
-Must use business use account for test and for register Serbia isn't an option in dropdown.
+Must use business account for test and for register Serbia isn't an option in dropdown.
 
 Useful docs links:
 
