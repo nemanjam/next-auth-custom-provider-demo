@@ -2,7 +2,10 @@
 ------------------------------------------------------
 // meeting 2
 
+https://meet.google.com/mix-mbhc-ric
 
+developer?
+how long meeting?
 ---------------------------
 // test
 https://folkslabs.notion.site/folkslabs/Folks-NextJS-Take-Home-Test-ecb512e8713b4bdd9ab305a960223770
@@ -76,6 +79,8 @@ https://developer.squareup.com/reference/square/merchants-api/retrieve-merchant
       "created_at": "2021-12-10T19:25:52.484Z"
     }
   }
+------------
+now explain Square code
 -------------------------------
 5.
 // pages/api/auth/[...nextauth].ts
